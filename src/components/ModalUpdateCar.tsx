@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { toast } from "sonner";
 import { ICar } from "../common/interfaces";
+import { base_url } from "../main";
 
 interface IModalUpdateOffer {
     open_modal: boolean,
@@ -50,7 +51,7 @@ export const ModalUpdateCar = ({ open_modal, close_modal, car }: IModalUpdateOff
         setLoading(true)
 
         try {
-            const { data } = await axios.put(`http://127.0.0.1:3003/cars/${car.id}`, {
+            const { data } = await axios.put(`${base_url}cars/${car.id}`, {
                 ...form_offer,
                 update_photos: selectedFiles.length ? true : false
             })
@@ -78,7 +79,7 @@ export const ModalUpdateCar = ({ open_modal, close_modal, car }: IModalUpdateOff
         })
 
         try {
-            const { data } = await axios.post('http://127.0.0.1:3003/photos', form_data, {
+            const { data } = await axios.post(`${base_url}photos`, form_data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

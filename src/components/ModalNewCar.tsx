@@ -2,6 +2,7 @@ import { Box, Button, Grid, Modal, TextField, Typography } from "@mui/material"
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "sonner";
+import { base_url } from "../main";
 
 interface IModalNewOffer {
     open_modal: boolean,
@@ -68,7 +69,7 @@ export const ModalNewCar = ({ open_modal, close_modal }: IModalNewOffer) => {
         setLoading(true)
 
         try {
-            const { data } = await axios.post("http://127.0.0.1:3003/cars", {
+            const { data } = await axios.post(`${base_url}cars`, {
                 ...form_offer
             })
             await sendPhotos(data.id)
@@ -92,7 +93,7 @@ export const ModalNewCar = ({ open_modal, close_modal }: IModalNewOffer) => {
         })
 
         try {
-            const { data } = await axios.post('http://127.0.0.1:3003/photos', form_data, {
+            const { data } = await axios.post(`${base_url}photos`, form_data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

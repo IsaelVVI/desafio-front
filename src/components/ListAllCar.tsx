@@ -8,6 +8,7 @@ import { ICar } from "../common/interfaces";
 import axios from "axios";
 import { toast } from "sonner";
 import { ModalUpdateCar } from "./ModalUpdateCar";
+import { base_url } from "../main";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -78,7 +79,7 @@ export const ListAllCar = () => {
 
     const getAllCars = async () => {
         try {
-            const { data } = await axios.get("http://127.0.0.1:3003/cars")
+            const { data } = await axios.get(`${base_url}cars`)
             setCars(data)
             setFilteredCars(data)
         } catch (error) {
@@ -113,7 +114,7 @@ export const ListAllCar = () => {
 
     const deleteCar = async (id: number) => {
         try {
-            await axios.delete(`http://127.0.0.1:3003/cars/${id}`)
+            await axios.delete(`${base_url}cars/${id}`)
             await getAllCars()
             toast.success("Oferta Deletada!")
         } catch (error) {

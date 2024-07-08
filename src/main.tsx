@@ -6,6 +6,8 @@ import Home from './pages/home/Home.tsx';
 import Admin from './pages/admin/Admin.tsx';
 import { Toaster } from 'sonner';
 
+export const base_url = import.meta.env.VITE_BASE_URL
+
 
 const router = createBrowserRouter([
   {

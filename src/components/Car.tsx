@@ -1,4 +1,4 @@
-import { Box, Card, CardActions, CardContent, CardMedia, List, ListItem, Typography, useMediaQuery } from "@mui/material"
+import { Card, CardActions, CardContent, List, ListItem, Typography, useMediaQuery } from "@mui/material"
 import { useState } from "react"
 import { ModalCar } from "./ModalCar"
 import { ICar } from "../common/interfaces"

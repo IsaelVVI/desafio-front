@@ -9,6 +9,7 @@ import 'swiper/css/pagination'
 import { formatDate, formatMoney } from "../common/functions";
 import { useEffect } from "react";
 import axios from "axios";
+import { base_url } from "../main";
 
 interface IModalCar {
     open_modal: boolean,
@@ -52,7 +53,7 @@ export const ModalCar = ({ open_modal, close_modal, car }: IModalCar) => {
 
     const updateView = async () => {
         try {
-            await axios.put(`http://127.0.0.1:3003/cars/${car.id}`, {
+            await axios.put(`${base_url}cars/${car.id}`, {
                 view: 1
             })
         } catch (error) {

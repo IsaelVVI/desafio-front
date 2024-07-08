@@ -6,8 +6,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { ICar } from "../common/interfaces";
-export const ListOfferCar = () => {
+import { base_url } from "../main";
 
+
+export const ListOfferCar = () => {
   useEffect(() => {
     async function getOffers() {
       await getAllCars()
@@ -26,7 +28,7 @@ export const ListOfferCar = () => {
   const [cars, setCars] = useState<ICar[]>([])
   const getAllCars = async () => {
     try {
-      const { data } = await axios.get("http://127.0.0.1:3003/cars")
+      const { data } = await axios.get(`${base_url}/cars`)
       setCars(data)
     } catch (error) {
       toast.error("Erro ao carregar ofertas")
