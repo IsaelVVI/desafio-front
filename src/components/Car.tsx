@@ -44,13 +44,19 @@ export const Car = ({car, list}: IPropsCar) => {
                     </Typography>
                     <List>
                         <ListItem sx={{padding: 0}}>
-                            <small><b>Marca:</b> </small> {car.brand}
+                            <span>
+                                <small><b>Marca:</b> </small> {car.brand}
+                            </span>
                         </ListItem>
                         <ListItem sx={{padding: 0}}>
-                            <small><b>Ano:</b> </small> {car.year}
+                            <span>
+                                <small><b>Ano:</b> </small> {car.year}
+                            </span>
                         </ListItem>
                         <ListItem sx={{padding: 0}}>
-                            <small><b>Preço:</b> </small> {formatMoney(car.price.toString())}
+                            <span>
+                                <small><b>Preço:</b> </small> {formatMoney(car.price.toString())}
+                            </span>
                         </ListItem>
                     </List>
                     {
