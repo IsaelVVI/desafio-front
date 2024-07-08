@@ -28,7 +28,7 @@ export const ListOfferCar = () => {
   const [cars, setCars] = useState<ICar[]>([])
   const getAllCars = async () => {
     try {
-      const { data } = await axios.get(`${base_url}/cars`)
+      const { data } = await axios.get(`${base_url}cars`)
       setCars(data)
     } catch (error) {
       toast.error("Erro ao carregar ofertas")
