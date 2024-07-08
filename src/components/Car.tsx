@@ -1,55 +1,37 @@
-import { Card, CardActions, CardContent, CardMedia, List, ListItem, Typography } from "@mui/material"
+import { Box, Card, CardActions, CardContent, CardMedia, List, ListItem, Typography, useMediaQuery } from "@mui/material"
 import { useState } from "react"
 import { ModalCar } from "./ModalCar"
 import { ICar } from "../common/interfaces"
+import { formatMoney } from "../common/functions"
 
+interface IPropsCar {
+    car: ICar
+    list?: boolean
+}
 
-export const Car = ({list, name, year, view, brand, price}: ICar) => {
+export const Car = ({car, list}: IPropsCar) => {
+
+    const media_query = useMediaQuery('(min-width:400px)')
 
     const [open_modal, setOpenModal] = useState(false)
-
-    const [car_selected, setCarSelected] = useState({
-        price: 0,
-        name: '',
-        brand: '',
-        year: 0,
-        view: 0
-    })
-
+    const photo = car.photos && car.photos[0].photo_url
     const closeModal = () => {
         setOpenModal(false)
     }
 
     const selectCar = () => {
-        setCarSelected({
-            brand,
-            name,
-            price,
-            view,
-            year
-        })
-
         setOpenModal(true)
     }
 
     return (
         <>
-            <ModalCar 
+            {open_modal && <ModalCar 
                 open_modal={open_modal} 
                 close_modal={closeModal}
-                brand={car_selected.brand}
-                name={car_selected.name}
-                price={car_selected.price}
-                view={car_selected.view}
-                year={car_selected.year} 
-            />
-            <Card onClick={() => selectCar()} sx={{display: list ? 'flex' : 'block', height: list ? 200 : 'auto'}}>
-                <CardMedia
-                    component={"img"}
-                    height={!list ? 150 : 'auto'}
-                    sx={{contain: 'size'}}
-                    image="https://picsum.photos/200/300"
-                />
+                car={car}
+            />}
+            <Card onClick={() => selectCar()} sx={{display: list ? 'flex' : 'block', minHeight: media_query ? 'auto' : 250}}>
+                <img style={{minHeight: 250, maxHeight: media_query ? 260 : 220}} width={list ? media_query ? 200 : 140 : '100%'} src={photo} alt="image offer" />
                 <CardContent sx={{
                     display: 'flex', 
                     justifyContent: 'space-between', 
@@ -58,28 +40,28 @@ export const Car = ({list, name, year, view, brand, price}: ICar) => {
                     width: list ? '100%' : 'auto'
                 }}>
                     <Typography gutterBottom variant="h5" component="div">
-                        {name}
+                        {car.model}
                     </Typography>
                     <List>
                         <ListItem sx={{padding: 0}}>
-                            Marca: {brand}
+                            <small>Marca: </small>{car.brand}
                         </ListItem>
                         <ListItem sx={{padding: 0}}>
-                            Ano: {year}
+                            <small>Ano: </small>{car.year}
                         </ListItem>
                         <ListItem sx={{padding: 0}}>
-                            Preço: {price}
+                            <small>Preço: </small>{formatMoney(car.price.toString())}
                         </ListItem>
                     </List>
                     {
                         list && <CardActions sx={{display: 'flex', width: '100%', justifyContent: 'center'}}>
-                                    <small>Visualizações: {view}</small>
+                                    <small>Visualizações: {car.view}</small>
                                 </CardActions>
                     }
                 </CardContent>
                 {
                     !list && <CardActions sx={{display: 'flex', justifyContent: 'end'}}>
-                                <small>Visualizações: {view}</small>
+                                <small>Visualizações: {car.view}</small>
                             </CardActions>
                 }
             </Card>
