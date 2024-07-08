@@ -41,7 +41,7 @@ export const ListOfferCar = () => {
   return (
     <>
       <Box sx={{ padding: '1rem', display: 'flex', justifyContent: 'center' }}>
-        <Grid container columns={12} alignItems={'center'} item lg={6} rowSpacing={list_cars ? 2 : 0} columnSpacing={list_cars ? 0 : 1}>
+        <Grid container columns={12} alignItems={'center'} item lg={6} rowSpacing={list_cars ? 2 : 1} columnSpacing={list_cars ? 0 : 1}>
           <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'end' }}>
             <Button onClick={() => changeViewList(true)}>
               <FormatListBulletedIcon color={list_cars ? 'primary' : 'action'} />
